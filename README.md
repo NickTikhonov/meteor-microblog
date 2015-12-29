@@ -1,5 +1,7 @@
 # meteor-microblog
 
+![Screenshot](http://i.imgur.com/OXEfc9L.png)
+
 With this project, I aim to build a functional microblogging platform. The 
 purpose for this is to gain experience with the meteor platform, and build a
 production-ready app from start to finish.
