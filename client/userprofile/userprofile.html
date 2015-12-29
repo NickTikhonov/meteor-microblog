@@ -1,0 +1,28 @@
+<template name="userprofile">
+  <div class="page-header">
+    {{# with user }}
+    {{> userinfoheader }}
+    {{/ with }}
+  </div>
+  <ul class="media-list">
+    {{# if hasPosts }}
+      {{# each posts }}
+        {{> post }}
+      {{/ each }}
+    {{ else }}
+      <h4>This user hasn't posted anything..</h4>
+    {{/ if }}
+  </ul>
+</template>
+
+<template name="userinfoheader">
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="{{ identicon displayName }}" alt="{{ displayName }}" class="img img-responsive"/>
+    </div>
+    <div class="col-sm-10">
+      <h1>{{ displayName }}</h1>
+      <p class="strong">Member since {{ memberSince }}</p>
+    </div>
+  </div>
+</template>

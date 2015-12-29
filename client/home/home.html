@@ -1,0 +1,24 @@
+<template name="home">
+
+  <div class="page-header">
+    {{#if currentUser }}
+      <input placeholder="Whats on your mind?"
+             class="input-lg posttext"
+             type="text"
+             id="posttext"
+             name="posttext"/>
+    {{ else }}
+      <h2>Log-in to post and comment!</h2>
+    {{/if}}
+  </div>
+
+  {{# if Template.subscriptionsReady }}
+    <ul id="postList" class="media-list">
+      {{# each posts }}
+        {{> post}}
+      {{/each}}
+    </ul>
+  {{else}}
+    Loading...
+  {{/if}}
+</template>

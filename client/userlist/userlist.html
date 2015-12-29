@@ -1,0 +1,37 @@
+<template name="userlist">
+  {{#if Template.subscriptionsReady }}
+    {{#if allusers }}
+      <div class="media-list">
+      {{#each allusers }}
+        {{>userinfo }}
+      {{/each}}
+      </div>
+    {{else }}
+      No users found
+    {{/if}}
+  {{ else }}
+    Waiting on subscriptions
+  {{/if}}
+</template>
+
+<template name="userinfo">
+  <li class="media">
+    <!--Post Author Picture-->
+    <div class="media-left">
+      <img src="{{ identicon displayName }}"
+           width="40px"
+           class="media-object" />
+    </div>
+
+    <!--Post Content and Comments-->
+    <div class="media-body">
+      <a href="/user/{{ _id }}">
+        <h4 class="media-heading">{{ displayName }}</h4>
+      </a>
+      <p>Member since {{ memberSince }}</p>
+      <button class="btn btn-xs btn-success">Direct Message</button>
+      <button class="btn btn-xs btn-info">Follow</button>
+      <button class="btn btn-xs btn-danger">Block</button>
+    </div>
+  </li>
+</template>

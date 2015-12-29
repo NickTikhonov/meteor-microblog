@@ -1,0 +1,62 @@
+<template name="post">
+  <li class="media">
+
+    <!--Post Author Picture-->
+    <div class="media-left">
+      <img src="{{ identicon username }}"
+           width="{{ avatarSize }}px"
+           class="media-object"
+           data-src="holder.js/64x64"/>
+    </div>
+
+    <!--Post Content and Comments-->
+    <div class="media-body">
+      <p>{{ username }}</p>
+      <h4 class="media-heading">{{ text }}</h4>
+
+      {{#if likeCount }}
+        <span class="badge badge-success">
+          {{likeCount}}
+        </span>
+
+        {{#if single likeCount }}
+          Person Likes
+        {{else}}
+          People Like
+        {{/if}}
+        This
+      {{/if}}
+
+      <p>
+        {{# if currentUser }}
+          <a class="likebtn muted"><small>
+            {{#if liked}}
+              Unlike
+            {{else}}
+              Like
+            {{/if}}
+          </small></a>
+        {{/if}}
+        {{# if userOwned }}
+          <a class="deletebtn muted"><small>Delete</small></a>
+        {{/if}}
+      </p>
+
+      <ul class="media-list">
+        {{# each comments }}
+          {{>post}}
+        {{/ each }}
+      </ul>
+
+      {{# if currentUser }}
+        <input type="text"
+               name="comment"
+               value=""
+               placeholder="Comment"
+               id="comment"
+               class="comment input-lg"/>
+      {{/if}}
+    </div>
+  </li>
+</template>
+
