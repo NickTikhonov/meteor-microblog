@@ -26,11 +26,13 @@
       <h1>{{ displayName }}</h1>
       <p class="strong">Member since {{ memberSince }}</p>
       {{# if currentUser }}
+        {{# if notCurrentUserProfile }}
         {{# if isFollowing }}
           <button class="btn btn-md btn-success">Direct Message</button>
           <button class="btn btn-md btn-danger follow-user">Unfollow</button>
         {{ else }}
           <button class="btn btn-md btn-info follow-user">Follow</button>
+        {{/if }}
         {{/if }}
       {{/ if }}
     </div>

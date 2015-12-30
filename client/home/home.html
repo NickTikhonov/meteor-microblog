@@ -12,13 +12,19 @@
     {{/if}}
   </div>
 
+  {{# if currentUser }}
   {{# if Template.subscriptionsReady }}
+    {{# if noPosts }}
+      <p class="lead">There are no new posts - follow some <a href="/users">people</a> to see more posts!</p>
+    {{ else }}
     <ul id="postList" class="media-list">
       {{# each posts }}
         {{> post}}
       {{/each}}
     </ul>
+    {{/if}}
   {{else}}
     Loading...
+  {{/if}}
   {{/if}}
 </template>

@@ -63,7 +63,7 @@ Meteor.methods({
     Posts.remove({});
   },
   'toggleFollow': function(userId) {
-    if (!Meteor.user())
+    if (!Meteor.user() || Meteor.userId() === userId)
       throw new Meteor.Error("not-authorised");
 
     console.log("toggleFollow called");

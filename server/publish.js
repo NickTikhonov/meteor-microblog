@@ -2,7 +2,8 @@ var USER_INFO = {
   fields: {
     _id: 1,
     username: 1,
-    emails: 1
+    emails: 1,
+    createdAt: 1
   }
 };
 
@@ -25,6 +26,24 @@ Meteor.publish("posts", function(parent) {
   return Posts.find({parent: parent});
 });
 
+Meteor.publish("wall", function() {
+  if (Meteor.user) {
+    var authors = Follows.find({
+      follower: Meteor.userId
+    }).fetch().map(function(followedUser) {
+      return followedUser.user;
+    });
+
+    authors.push(this.userId);
+
+    return Posts.find({
+      parent: null,
+      owner: {
+        $in: authors
+      }
+    });
+  }
+});
 
 // Publishing Likes
 Meteor.publish("likes", function(postId) {

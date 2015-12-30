@@ -35,6 +35,9 @@ Template.userinfoheader.helpers({
   },
   'isFollowing': function() {
     return Follows.find({user: this._id, follower: Meteor.userId()}).count() > 0;
+  },
+  'notCurrentUserProfile': function() {
+    return this._id !== Meteor.userId();
   }
 });
 
