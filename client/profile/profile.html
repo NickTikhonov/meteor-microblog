@@ -4,17 +4,23 @@
     {{> userinfoheader }}
     {{/ with }}
   </div>
-  <ul class="media-list">
     {{# if Template.subscriptionsReady }}
       {{# if hasPosts }}
+        <ul class="media-list">
         {{# each posts }}
           {{> post }}
         {{/ each }}
+        </ul>
       {{ else }}
         <h4>This user hasn't posted anything..</h4>
       {{/ if }}
+    {{ else }}
+      <div class="row">
+        <div class="col-lg-4">
+          {{> spinner }}
+        </div>
+      </div>
     {{/ if }}
-  </ul>
 </template>
 
 <template name="userinfoheader">

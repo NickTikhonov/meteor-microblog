@@ -24,7 +24,11 @@
     </ul>
     {{/if}}
   {{else}}
-    Loading...
+    <div class="row">
+      <div class="col-lg-4">
+        {{> spinner }}
+      </div>
+    </div>
   {{/if}}
   {{/if}}
 </template>
