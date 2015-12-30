@@ -31,9 +31,12 @@ Meteor.publish("likes", function(postId) {
   return Likes.find({parent: postId});
 });
 
-var deleteChildren = function(id) {
-  Posts.find({parent:id}).forEach(function(post) {
-    deleteChildren(post._id);
-    Posts.remove(post._id);
-  })
-};
+// Publishing Follows
+Meteor.publish("followers", function(userId) {
+  return Follows.find({user: userId});
+});
+
+Meteor.publish("followedUsers", function(userId) {
+  return Follows.find({follower: userId});
+});
+

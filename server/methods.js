@@ -61,5 +61,25 @@ Meteor.methods({
       throw new Meteor.Error("not-authorised");
 
     Posts.remove({});
+  },
+  'toggleFollow': function(userId) {
+    if (!Meteor.user())
+      throw new Meteor.Error("not-authorised");
+
+    console.log("toggleFollow called");
+
+    var query = {
+      user: userId,
+      follower: Meteor.userId()
+    };
+    console.log(query);
+
+    if (Follows.find(query).count() == 0) {
+      console.log("No follows exist");
+      Follows.insert(query);
+    } else {
+      console.log("Follow already exists");
+      Follows.remove(query);
+    }
   }
 });
