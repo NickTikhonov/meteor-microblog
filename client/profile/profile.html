@@ -1,16 +1,18 @@
-<template name="userprofile">
+<template name="profile">
   <div class="page-header">
     {{# with user }}
     {{> userinfoheader }}
     {{/ with }}
   </div>
   <ul class="media-list">
-    {{# if hasPosts }}
-      {{# each posts }}
-        {{> post }}
-      {{/ each }}
-    {{ else }}
-      <h4>This user hasn't posted anything..</h4>
+    {{# if Template.subscriptionsReady }}
+      {{# if hasPosts }}
+        {{# each posts }}
+          {{> post }}
+        {{/ each }}
+      {{ else }}
+        <h4>This user hasn't posted anything..</h4>
+      {{/ if }}
     {{/ if }}
   </ul>
 </template>
@@ -23,6 +25,10 @@
     <div class="col-sm-10">
       <h1>{{ displayName }}</h1>
       <p class="strong">Member since {{ memberSince }}</p>
+      {{# if currentUser }}
+        <button class="btn btn-md btn-success">Direct Message</button>
+        <button class="btn btn-md btn-info">Follow</button>
+      {{/ if }}
     </div>
   </div>
 </template>

@@ -7,10 +7,10 @@
       {{/each}}
       </div>
     {{else }}
-      No users found
+      <h1>No users found</h1>
     {{/if}}
   {{ else }}
-    Waiting on subscriptions
+    <h1>Loading..</h1>
   {{/if}}
 </template>
 
@@ -29,9 +29,10 @@
         <h4 class="media-heading">{{ displayName }}</h4>
       </a>
       <p>Member since {{ memberSince }}</p>
-      <button class="btn btn-xs btn-success">Direct Message</button>
-      <button class="btn btn-xs btn-info">Follow</button>
-      <button class="btn btn-xs btn-danger">Block</button>
+      {{# if currentUser }}
+        <button class="btn btn-xs btn-success">Direct Message</button>
+        <button class="btn btn-xs btn-info">Follow</button>
+      {{/ if }}
     </div>
   </li>
 </template>

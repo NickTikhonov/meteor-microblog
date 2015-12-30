@@ -7,7 +7,7 @@ Router.configure({
 Router.map(function() {
   this.route('home', { path: '/' });
   this.route('userlist', { path: '/users'});
-  this.route('userprofile', {
+  this.route('profile', {
     path: '/user/:id',
     data: function() {
       return {

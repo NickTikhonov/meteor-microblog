@@ -1,12 +1,17 @@
+var USER_INFO = {
+  fields: {
+    _id: 1,
+    username: 1,
+    emails: 1
+  }
+};
+
 Meteor.publish("users", function(userId) {
-  console.log("Getting all users");
-  var users = Meteor.users.find({});
-  console.log(users.count());
-  return users;
+  return Meteor.users.find({}, USER_INFO);
 });
 
 Meteor.publish("user", function(userId) {
-  return Meteor.users.find({_id: userId});
+  return Meteor.users.find({_id: userId}, USER_INFO);
 });
 
 Meteor.publish("postsBy", function(userId) {
@@ -26,7 +31,7 @@ var deleteChildren = function(id) {
     deleteChildren(post._id);
     Posts.remove(post._id);
   })
-}
+};
 
 Meteor.methods({
   //{text:'',owner:'',date:'',parent:''}
@@ -35,7 +40,6 @@ Meteor.methods({
       throw new Meteor.Error("not-authorised");
 
     var level = 1;
-
     if (options.parent !== null) {
       parent = Posts.findOne(options.parent);
       level = parent.level + 1;
@@ -86,4 +90,4 @@ Meteor.methods({
 
     Posts.remove({});
   }
-})
+});
