@@ -16,8 +16,10 @@ production-ready app from start to finish.
 * following/friendship system to restrict newsfeed items to those from friend
     circle
 
-## Planned Features
+## Planned Work
 
+* convert codebase to typescript
+* re-structure code and implement unit testing
 * information-rich user accounts
 * the ability to search for users based on multiple criteria
 * private IM system
