@@ -6,14 +6,18 @@ Template.profile.onCreated(function() {
 
 Template.profile.helpers({
   'posts': function() {
-    return Posts.find({owner: this.id, parent: null});
+    return Posts.find({owner: this.id, parent: null}, {sort: {date: -1}});
   },
   'hasPosts': function() {
     return Posts.find({owner: this.id, parent: null}).count() > 0;
   },
   'user': function() {
     return Meteor.users.findOne({_id: this.id});
-  },
+  }
+});
+
+Template.userinfoheader.onCreated(function(){
+  this.subscribe('followedUsers', Meteor.userId());
 });
 
 Template.userinfoheader.helpers({
@@ -28,5 +32,17 @@ Template.userinfoheader.helpers({
   },
   'memberSince': function() {
     return new Date(this.createdAt).toDateString();
+  },
+  'isFollowing': function() {
+    return Follows.find({user: this._id, follower: Meteor.userId()}).count() > 0;
+  },
+  'notCurrentUserProfile': function() {
+    return this._id !== Meteor.userId();
+  }
+});
+
+Template.userinfoheader.events({
+  'click .follow-user': function(e,t) {
+    Meteor.call('toggleFollow', this._id);
   }
 });

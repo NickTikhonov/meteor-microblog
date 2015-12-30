@@ -13,11 +13,11 @@ production-ready app from start to finish.
 * ability to like posts and comments
 * simple user accounts and profiles, the ability to view a particular user's
     posts
+* following/friendship system to restrict newsfeed items to those from friend
+    circle
 
 ## Planned Features
 
-* following/friendship system to restrict newsfeed items to those from friend
-    circle
 * information-rich user accounts
 * the ability to search for users based on multiple criteria
 * private IM system
