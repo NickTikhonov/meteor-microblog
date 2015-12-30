@@ -1,18 +1,20 @@
-Router.configure({
-  layoutTemplate: 'layout',
-  loadingTemplate: 'loading',
-  notFoundTemplate: 'notFound'
+FlowRouter.route('/', {
+  name: 'home',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'home'});
+  }
 });
 
-Router.map(function() {
-  this.route('home', { path: '/' });
-  this.route('userlist', { path: '/users'});
-  this.route('profile', {
-    path: '/user/:id',
-    data: function() {
-      return {
-        'id': this.params.id
-      }
-    }
-  });
+FlowRouter.route('/users', {
+  name: 'userlist',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'userlist'});
+  }
+});
+
+FlowRouter.route('/user/:id', {
+  name: 'profile',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'profile'});
+  }
 });

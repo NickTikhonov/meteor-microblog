@@ -1,11 +1,9 @@
 /**
  * After this page is rendered, do this:
  */
-Template.home.rendered = function() {
-  Deps.autorun(function() {
-    Meteor.subscribe("wall");
-  });
-}
+Template.home.onCreated(function() {
+  this.subscribe("wall");
+});
 
 Template.home.helpers({
   'posts': function() {

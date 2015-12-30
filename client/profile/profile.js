@@ -1,18 +1,17 @@
 Template.profile.onCreated(function() {
-  console.log("THE ID IS: " + Template.currentData().id);
-  this.subscribe('postsBy', Template.currentData().id);
-  this.subscribe('user', Template.currentData().id);
+  this.subscribe('postsBy', FlowRouter.getParam('id'));
+  this.subscribe('user', FlowRouter.getParam('id'));
 });
 
 Template.profile.helpers({
   'posts': function() {
-    return Posts.find({owner: this.id, parent: null}, {sort: {date: -1}});
+    return Posts.find({owner: FlowRouter.getParam('id'), parent: null}, {sort: {date: -1}});
   },
   'hasPosts': function() {
-    return Posts.find({owner: this.id, parent: null}).count() > 0;
+    return Posts.find({owner: FlowRouter.getParam('id'), parent: null}).count() > 0;
   },
   'user': function() {
-    return Meteor.users.findOne({_id: this.id});
+    return Meteor.users.findOne({_id: FlowRouter.getParam('id')});
   }
 });
 

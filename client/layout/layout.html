@@ -1,6 +1,6 @@
 <template name="layout">
   {{>navigation}}
   <div class="container">
-    {{>yield}}
+    {{> Template.dynamic template=content }}
   </div>
 </template>
