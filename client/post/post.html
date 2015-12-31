@@ -11,36 +11,60 @@
 
     <!--Post Content and Comments-->
     <div class="media-body">
-      <p>{{ username }}</p>
-      <h4 class="media-heading">{{ text }}</h4>
+      <h4 class="media-heading">{{ username }}</h4>
+      <p class="large">{{ text }}</p>
 
-      {{#if likeCount }}
-        <span class="badge badge-success">
-          {{likeCount}}
-        </span>
-
-        {{#if single likeCount }}
-          Person Likes
-        {{else}}
-          People Like
-        {{/if}}
-        This
-      {{/if}}
 
       <p>
         {{# if currentUser }}
           <a class="likebtn muted"><small>
             {{#if liked}}
+              <i class="fa fa-thumbs-down"></i>
               Unlike
             {{else}}
+              <i class="fa fa-thumbs-up"></i>
               Like
             {{/if}}
           </small></a>
         {{/if}}
         {{# if userOwned }}
-          <a class="deletebtn muted"><small>Delete</small></a>
+          <a class="deletebtn muted"><i class="fa fa-trash"></i><small> Delete</small></a>
+
+        {{/if}}
+        {{#if hideCommentInput }}
+          <small>
+            <a class="show-comment-box">
+              <i class="fa fa-comment"></i>
+              Comment
+            </a>
+          </small>
+        {{/if}}
+        {{#if likeCount }}
+          <small>
+          <span class="badge badge-success">
+            {{likeCount}}
+          </span>
+
+            {{#if single likeCount }}
+              Person Likes
+            {{else}}
+              People Like
+            {{/if}}
+            This
+          </small>
         {{/if}}
       </p>
+
+      {{# if currentUser }}
+        {{#if showCommentInput }}
+        <input type="text"
+               name="comment"
+               value=""
+               placeholder="Comment"
+               id="comment"
+               class="comment input-xs"/>
+        {{/if}}
+      {{/if}}
 
       <ul class="media-list">
         {{# each comments }}
@@ -48,14 +72,6 @@
         {{/ each }}
       </ul>
 
-      {{# if currentUser }}
-        <input type="text"
-               name="comment"
-               value=""
-               placeholder="Comment"
-               id="comment"
-               class="comment input-lg"/>
-      {{/if}}
     </div>
   </li>
 </template>
