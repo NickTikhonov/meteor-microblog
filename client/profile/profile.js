@@ -1,6 +1,8 @@
 Template.profile.onCreated(function() {
   this.subscribe('postsBy', FlowRouter.getParam('id'));
   this.subscribe('user', FlowRouter.getParam('id'));
+  this.subscribe('followers', FlowRouter.getParam('id'));
+  this.subscribe('followedUsers', FlowRouter.getParam('id'));
 });
 
 Template.profile.helpers({
@@ -37,6 +39,12 @@ Template.userinfoheader.helpers({
   },
   'notCurrentUserProfile': function() {
     return this._id !== Meteor.userId();
+  },
+  'followerCount': function() {
+    return Follows.find({user: FlowRouter.getParam('id')}).count();
+  },
+  'usersFollowedCount': function() {
+    return Follows.find({follower: FlowRouter.getParam('id')}).count();
   }
 });
 

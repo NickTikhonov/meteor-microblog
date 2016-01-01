@@ -30,7 +30,9 @@
     </div>
     <div class="col-sm-10">
       <h1>{{ displayName }}</h1>
-      <p class="strong">Member since {{ memberSince }}</p>
+      <p class="lead">Member since {{ memberSince }}</p>
+      <p>Followers: {{ followerCount }}</p>
+      <p>Following: {{ usersFollowedCount }}</p>
       {{# if currentUser }}
         {{# if notCurrentUserProfile }}
         {{# if isFollowing }}
